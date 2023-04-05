@@ -1,0 +1,10 @@
+.container {
+	width: 100%;
+	min-height: max-content;
+	padding-top: 5vh;
+	padding-bottom: 5vh;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 2rem;
+}

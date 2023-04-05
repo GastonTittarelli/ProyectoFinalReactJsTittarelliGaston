@@ -1,0 +1,38 @@
+* {
+	margin: 0;
+}
+.cards {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	width: 16vw;
+	height: 45vh;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease-in-out;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.title {
+	font-size: 1rem;
+	color: black;
+}
+
+.img {
+	width: 50%;
+	height: 30%;
+}
+
+.precio {
+	color: black;
+}
+
+.description {
+	height: 10vh;
+	font-size: 0.9rem;
+	overflow: auto;
+	color: black;
+}
