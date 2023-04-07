@@ -14,7 +14,7 @@ const NavBar = () => {
 				/>
 			</Link>
 			<Link to="/category/item">
-				<h3 className={styles.titulo}>Distribuidora Tiitarelli</h3>
+				<h3 className={styles.titulo}>Glamour Attic</h3>
 			</Link>
 			<div className={styles.anContainer}>
 				<Link to="/category/men's clothing">
