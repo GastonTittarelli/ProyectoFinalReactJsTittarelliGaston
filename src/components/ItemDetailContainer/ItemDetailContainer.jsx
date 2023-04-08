@@ -1,3 +1,4 @@
+import { collection, doc, getDoc, getFirestore } from "firebase/firestore";
 import styles from "./itemDetailContainer.module.css";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -10,18 +11,19 @@ const override = {
 };
 
 const ItemDetailContainer = () => {
-	const [product, setProduct] = useState({});
-	const { id } = useParams();
 	const [loading, setLoading] = useState(true);
 	let [color, setColor] = useState("#ffffff");
+	const [product, setProduct] = useState({});
+	const { id } = useParams();
 	
-
 	useEffect(() => {
-		fetch(`https://fakestoreapi.com/products/${id}`)
-			.then((res) => res.json())
-			.then((data) => setProduct(data))
-			.then(() => setLoading(false));
+		const queryDb = getFirestore();
+		const queryDoc = doc(queryDb, "items", id);
+		getDoc(queryDoc)
+		.then(res => setProduct ({id: res.id, ...res.data()}))
+		.then(() => setLoading(false));
 	}, []);
+
 
 	return (
 		<div>

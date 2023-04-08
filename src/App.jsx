@@ -9,7 +9,7 @@ function App() {
 		<div>
 			<NavBar />
 			<Routes>
-				<Route path="/" element={<Navigate to="category/item" />} />
+				<Route path="/" element={<ItemListContainer />} />
 				<Route path="category/:category" element={<ItemListContainer />} />
 				<Route
 					path="/carrito"

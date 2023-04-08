@@ -1,8 +1,10 @@
 import Card from "../Card/Card";
 import styles from "./itemListContainer.module.css";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import db from "../../../db/firebase-config";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
 
 const override = {
 	display: "block",
@@ -11,25 +13,29 @@ const override = {
 };
 
 const ItemListContainer = () => {
-	const [products, setProduct] = useState([]);
+	const [products, setProducts] = useState([]);
 	const { category } = useParams();
 	const [loading, setLoading] = useState(true);
 	let [color, setColor] = useState("#ffffff");
+	const itemsRef = collection(db, "items");
+
+	const getProducts = async () => {
+		let q = collection(db, "items");
+		if (category) {
+			q = query(q, where("category", "==", category));
+		}
+		const itemsCollection = await getDocs(q);
+		const items = itemsCollection.docs.map((doc) => ({
+			...doc.data(),
+			id: doc.id,
+		}));
+		setProducts(items);
+		setLoading(false);
+	};
 
 	useEffect(() => {
-		if (category !== "item") {
-			fetch(`https://fakestoreapi.com/products/category/${category}`)
-				.then((res) => res.json())
-				.then((data) => setProduct(data))
-				.then(() => setLoading(false));
-		} else {
-			fetch("https://fakestoreapi.com/products")
-				.then((res) => res.json())
-				.then((data) => setProduct(data))
-				.then(() => setLoading(false));
-		}
+		getProducts();
 	}, [category]);
-
 
 	return (
 		<div>
