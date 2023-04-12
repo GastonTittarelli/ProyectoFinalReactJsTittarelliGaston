@@ -9,8 +9,8 @@ const NavBar = () => {
 				<img
 					className={styles.logo}
 					href=""
-					src="/img/DLogo.png"
-					alt="logo Distribuidora Tittarelli"
+					src="/img/logo1png.png"
+					alt="Glamour Attic logo"
 				/>
 			</Link>
 			<Link to="/">

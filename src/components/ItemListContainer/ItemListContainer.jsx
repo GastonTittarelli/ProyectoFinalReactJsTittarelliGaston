@@ -5,6 +5,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import db from "../../../db/firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import React from "react";
+import { useCartContext } from "../../context/CartContext";
 
 const override = {
 	display: "block",
