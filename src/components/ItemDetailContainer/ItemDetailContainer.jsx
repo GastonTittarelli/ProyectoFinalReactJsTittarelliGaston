@@ -1,7 +1,13 @@
-import { collection, doc, getDoc, getFirestore, addDoc } from "firebase/firestore";
+import {
+	collection,
+	doc,
+	getDoc,
+	getFirestore,
+	addDoc,
+} from "firebase/firestore";
 import styles from "./itemDetailContainer.module.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
@@ -19,23 +25,20 @@ const ItemDetailContainer = () => {
 	const { id } = useParams();
 	const [selectedProduct, setSelectedProduct] = useState({});
 
-	const [goToCart, setGotoCart ] = useState(false);
-	const {addProduct} = useCartContext();
-	
+	const [goToCart, setGotoCart] = useState(false);
+	const { addProduct } = useCartContext();
 
-	
 	useEffect(() => {
 		const queryDb = getFirestore();
 		const queryDoc = doc(queryDb, "items", id);
 		getDoc(queryDoc)
-		.then(res => setProduct ({id: res.id, ...res.data()}))
-		.then(() => setLoading(false));
+			.then((res) => setProduct({ id: res.id, ...res.data() }))
+			.then(() => setLoading(false));
 	}, []);
 
-
 	const onAdd = (quantity) => {
-		console.log(`compraste ${quantity} unidades`);
-	}
+		setGotoCart(true);
+	};
 
 	// const deleteFromCart = async () => {
 	// 	try {
@@ -46,7 +49,6 @@ const ItemDetailContainer = () => {
 	// 		console.error("Error: ", error);
 	// 	}
 	// }
-
 
 	return (
 		<div>
@@ -60,18 +62,32 @@ const ItemDetailContainer = () => {
 					data-testid="loader"
 				/>
 			) : (
-			<div className={styles.container}>
-				<div className={styles.cards}>
-					<h3 className={styles.title}>{product.title}</h3>
-					<img className={styles.img} src={product.image} alt={product.title} />
-					<h4 className={styles.precio}>${product.price}</h4>
-					<div className={styles.description}>
-						<p>{product.description}</p>
+				<div className={styles.container}>
+					<div className={styles.cards}>
+						<h3 className={styles.title}>{product.title}</h3>
+						<img
+							className={styles.img}
+							src={product.image}
+							alt={product.title}
+						/>
+						<h4 className={styles.precio}>${product.price}</h4>
+						<div className={styles.description}>
+							<p>{product.description}</p>
+						</div>
+						{goToCart ? (
+							<>
+								<Link to="/cart" className={styles.btn}>
+									Go to Cart
+								</Link>
+								<Link to="/" className={styles.btn}>
+									Continue Shopping
+								</Link>
+							</>
+						) : (
+							<ItemCount initial={1} stock={7} onAdd={onAdd} />
+						)}
 					</div>
-					<ItemCount initial={1} stock={7} onAdd={onAdd}/>
 				</div>
-				
-			</div>
 			)}
 		</div>
 	);

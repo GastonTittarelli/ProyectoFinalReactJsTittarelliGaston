@@ -29,7 +29,7 @@ const NavBar = () => {
 					<p className={styles.anchors}>Electronics</p>
 				</Link>
 			</div>
-			<Link to="/carrito">
+			<Link to="/cart">
 				<FaShoppingCart className={styles.svg} />
 			</Link>
 		</nav>
