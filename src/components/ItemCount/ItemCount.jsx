@@ -1,5 +1,6 @@
 import styles from "./itemCount.module.css";
 import React, {useState, useEffect} from "react";
+import { useCartContext } from "../../context/CartContext";
 
 export const ItemCount = ({initial, stock, onAdd}) => {
     const [count, setCount] = useState(parseInt(initial));

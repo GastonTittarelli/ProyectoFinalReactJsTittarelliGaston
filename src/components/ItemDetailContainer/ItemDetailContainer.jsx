@@ -11,6 +11,9 @@ import { Link, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
+import { useContext } from "react";
+// import { CartContext } from "../../context/CartContext";
+import Cart from "../Cart/Cart";
 
 const override = {
 	display: "block",
@@ -18,7 +21,7 @@ const override = {
 	borderColor: "rgba(80, 77, 233, 1)",
 };
 
-const ItemDetailContainer = () => {
+export const ItemDetailContainer = ({data}) => {
 	const [loading, setLoading] = useState(true);
 	let [color, setColor] = useState("#ffffff");
 	const [product, setProduct] = useState({});
@@ -27,6 +30,7 @@ const ItemDetailContainer = () => {
 
 	const [goToCart, setGotoCart] = useState(false);
 	const { addProduct } = useCartContext();
+	
 
 	useEffect(() => {
 		const queryDb = getFirestore();
@@ -38,17 +42,8 @@ const ItemDetailContainer = () => {
 
 	const onAdd = (quantity) => {
 		setGotoCart(true);
+		addProduct(product, quantity);
 	};
-
-	// const deleteFromCart = async () => {
-	// 	try {
-	// 		const db = getFirestore();
-	// 		await addDoc(collection(db, "cart"), selectedProduct);
-	// 		alert("Product eliminated to cart successfully!");
-	// 	} catch (error) {
-	// 		console.error("Error: ", error);
-	// 	}
-	// }
 
 	return (
 		<div>

@@ -8,6 +8,7 @@ import React from "react";
 import CartProvider from "./context/CartContext";
 
 
+
 function App() {
 	return (
 		<div>
