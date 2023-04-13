@@ -3,7 +3,6 @@ import styles from "./itemCart.module.css";
 import { useCartContext } from "../../context/CartContext";
 
 
-
 export const ItemCart = ({item}) => {
 	const {removeProduct} = useCartContext();
 	return (

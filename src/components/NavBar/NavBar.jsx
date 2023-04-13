@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./navBar.module.css";
-// import { FaShoppingCart } from "react-icons/fa";
 import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {

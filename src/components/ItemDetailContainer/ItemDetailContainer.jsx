@@ -1,9 +1,7 @@
 import {
-	collection,
 	doc,
 	getDoc,
 	getFirestore,
-	addDoc,
 } from "firebase/firestore";
 import styles from "./itemDetailContainer.module.css";
 import { useEffect, useState } from "react";
@@ -11,9 +9,7 @@ import { Link, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
-import { useContext } from "react";
-// import { CartContext } from "../../context/CartContext";
-import Cart from "../Cart/Cart";
+
 
 const override = {
 	display: "block",
