@@ -4,7 +4,7 @@ Este es un proyecto de ecommerce que permite a los usuarios comprar productos en
 ---
 
 ####Funcionalidades
--Inicio de sesión de usuarios.
+-Carga de datos en base de datos (Firebase).
 -Carrito de compras.
 -Categorización de productos para facilitar la búsqueda.
 
