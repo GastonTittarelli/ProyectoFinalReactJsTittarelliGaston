@@ -7,7 +7,6 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import React from "react";
 
-
 const override = {
 	display: "block",
 	margin: "auto",

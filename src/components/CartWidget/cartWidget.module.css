@@ -1,5 +1,15 @@
 svg {
-	font-size: 2rem;
-	color: #000000;
+	font-size: 2.3rem;
+	color: #4a53f1;
 	height: 100%;
+}
+
+svg:hover {
+	color: rgb(48, 48, 169);
+}
+
+.number {
+	font-size: 1.1rem;
+	font-weight: bolder;
+	color: #4a53f1;
 }

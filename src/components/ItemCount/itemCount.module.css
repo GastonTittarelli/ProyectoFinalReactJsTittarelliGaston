@@ -29,6 +29,7 @@
 	font-size: 20px;
 	font-weight: bold;
 }
+
 .containerBtnAdd {
 	width: 90%;
 }
@@ -45,5 +46,5 @@
 }
 
 .buttonsAdd:hover {
-    background-color: #3e8e41; 
+	background-color: #3e8e41;
 }

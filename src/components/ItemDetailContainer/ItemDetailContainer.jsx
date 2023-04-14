@@ -1,8 +1,4 @@
-import {
-	doc,
-	getDoc,
-	getFirestore,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import styles from "./itemDetailContainer.module.css";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -10,14 +6,13 @@ import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
-
 const override = {
 	display: "block",
 	margin: "auto",
 	borderColor: "rgba(80, 77, 233, 1)",
 };
 
-export const ItemDetailContainer = ({data}) => {
+export const ItemDetailContainer = ({ data }) => {
 	const [loading, setLoading] = useState(true);
 	let [color, setColor] = useState("#ffffff");
 	const [product, setProduct] = useState({});
@@ -26,7 +21,6 @@ export const ItemDetailContainer = ({data}) => {
 
 	const [goToCart, setGotoCart] = useState(false);
 	const { addProduct } = useCartContext();
-	
 
 	useEffect(() => {
 		const queryDb = getFirestore();
@@ -68,10 +62,12 @@ export const ItemDetailContainer = ({data}) => {
 						{goToCart ? (
 							<>
 								<Link to="/cart" className={styles.btn}>
-									Go to Cart
+									<button className={styles.buttonCart}>Go to Cart</button>
 								</Link>
 								<Link to="/" className={styles.btn}>
-									Continue Shopping
+									<button className={styles.buttonStore}>
+										Continue Shopping
+									</button>
 								</Link>
 							</>
 						) : (

@@ -41,3 +41,37 @@
 	overflow: auto;
 	color: black;
 }
+
+.btn {
+	width: 80%;
+}
+
+.buttonCart {
+	background-color: green;
+	color: white;
+	width: 80%;
+	height: auto;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.buttonCart:hover {
+	background-color: #3e8e41;
+}
+
+.buttonStore {
+	background-color: rgb(149, 147, 10);
+	color: white;
+	width: 80%;
+	height: auto;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+	margin: 5px;
+}
+
+.buttonStore:hover {
+	background-color: rgb(168, 166, 6);
+}

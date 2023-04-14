@@ -3,6 +3,7 @@ import { useCartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import ItemCart from "../ItemCart/ItemCart";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import styles from "./cart.module.css";
 
 const Cart = () => {
 	const { cart, totalPrice } = useCartContext();
@@ -43,28 +44,33 @@ const Cart = () => {
 	};
 
 	const handleClick = () => {
-		const confirmed = window.confirm("Would you like to confirm your purchase?");
+		const confirmed = window.confirm(
+			"Would you like to confirm your purchase?"
+		);
 		if (confirmed) {
-			const db= getFirestore();
+			const db = getFirestore();
 			const ordersCollection = collection(db, "orders");
 			addDoc(ordersCollection, order)
-				.then(({id}) => {
-					console.log(id);
+				.then(({ id }) => {
 					alert(`Your order has been processed! Order number: ${id}`);
-					window.location.href = '/';
+					window.location.href = "/";
 				})
-				.catch(error => {
+				.catch((error) => {
 					console.error("Error adding document: ", error);
-					alert("An error occurred while processing the order. Please try again.");
+					alert(
+						"An error occurred while processing the order. Please try again."
+					);
 				});
 		}
-	}
+	};
 
 	if (cart.length === 0) {
 		return (
 			<>
-				<p>Empty cart!</p>
-				<Link to="/">Go to store</Link>
+				<p className={styles.advice}>Oops! The Cart Is Empty!</p>
+				<Link className={styles.btnStore} to="/">
+					Go to store
+				</Link>
 			</>
 		);
 	}
@@ -74,12 +80,15 @@ const Cart = () => {
 			{cart.map((item) => (
 				<ItemCart key={item.id} item={item} />
 			))}
-			<p>Total: ${totalPrice()}</p>
+			<p className={styles.totalPrice}>Total: ${totalPrice()}</p>
 
-			<form>
+			<form className={styles.form}>
 				<div>
-					<label htmlFor="firstName">First Name:</label>
+					<label className={styles.label} htmlFor="firstName">
+						First Name:
+					</label>
 					<input
+						className={styles.imput}
 						type="text"
 						id="firstName"
 						name="firstName"
@@ -88,8 +97,11 @@ const Cart = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="lastName">Last Name:</label>
+					<label className={styles.label} htmlFor="lastName">
+						Last Name:
+					</label>
 					<input
+						className={styles.imput}
 						type="text"
 						id="lastName"
 						name="lastName"
@@ -98,8 +110,11 @@ const Cart = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="phone">Phone:</label>
+					<label className={styles.label} htmlFor="phone">
+						Phone:
+					</label>
 					<input
+						className={styles.imput}
 						type="text"
 						id="phone"
 						name="phone"
@@ -108,8 +123,11 @@ const Cart = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="email">Email:</label>
+					<label className={styles.label} htmlFor="email">
+						Email:
+					</label>
 					<input
+						className={styles.imput}
 						type="email"
 						id="email"
 						name="email"
@@ -118,8 +136,11 @@ const Cart = () => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="confirmEmail">Confirm Email:</label>
+					<label className={styles.label} htmlFor="confirmEmail">
+						Confirm Email:
+					</label>
 					<input
+						className={styles.imput}
 						type="email"
 						id="confirmEmail"
 						name="confirmEmail"
@@ -129,7 +150,11 @@ const Cart = () => {
 				</div>
 			</form>
 
-			<button disabled={!canSubmit} onClick={handleClick}>
+			<button
+				className={styles.btnBuy}
+				disabled={!canSubmit}
+				onClick={handleClick}
+			>
 				Buy cart
 			</button>
 		</>

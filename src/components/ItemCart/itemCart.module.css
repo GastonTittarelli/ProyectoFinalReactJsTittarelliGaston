@@ -1,12 +1,44 @@
-.itemCart{
-    display: flex;
-    border-bottom: 1px solid gray;
-    max-width: 500px;
-    margin: 1rem auto;
+.itemCart {
+	display: flex;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	max-width: 90%;
+	margin: 1rem auto;
+	align-items: center;
+	justify-content: center;
 }
 
-.itemCart img{
-    width: 200px;
-    height: 200px;
-    margin-right: 1rem;
+.itemCart img {
+	width: 200px;
+	height: 200px;
+	margin-right: 1rem;
+}
+
+.itemDetail {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-align: center;
+	width: 75%;
+}
+
+.title {
+	font-size: 1.2rem;
+	font-weight: bolder;
+	margin: 0;
+	width: 40%;
+}
+
+.btnDelete {
+	background-color: #d23404;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: bolder;
+	cursor: pointer;
+}
+
+.btnDelete:hover {
+	background-color: #a60c0c;
 }

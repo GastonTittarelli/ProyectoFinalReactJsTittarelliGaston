@@ -5,10 +5,12 @@ import styles from "./cartWidget.module.css";
 
 export const CartWidget = () => {
 	const { totalProducts } = useCartContext();
-	return <>
-        <FaShoppingCart className={styles.svg} />
-        <span>{totalProducts() || ""}</span>
-    </>;
+	return (
+		<>
+			<FaShoppingCart className={styles.svg} />
+			<span className={styles.number}>{totalProducts() || ""}</span>
+		</>
+	);
 };
 
 export default CartWidget;

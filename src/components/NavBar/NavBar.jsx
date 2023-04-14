@@ -19,7 +19,7 @@ const NavBar = () => {
 			<div className={styles.anContainer}>
 				<Link to="/category/men's clothing">
 					<p className={styles.anchors} href="">
-					Men's Clothing
+						Men's Clothing
 					</p>
 				</Link>
 				<Link to="/category/jewelery">
