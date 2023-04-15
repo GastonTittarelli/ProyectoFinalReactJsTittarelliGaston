@@ -23,8 +23,9 @@
 	height: 30px;
 }
 
-.span {
+.Nspan {
 	width: 20%;
+	color: black;
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;

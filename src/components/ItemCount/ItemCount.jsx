@@ -25,7 +25,7 @@ export const ItemCount = ({ initial, stock, onAdd }) => {
 			>
 				-
 			</button>
-			<span className={styles.span}>{count}</span>
+			<span className={styles.Nspan}>{count}</span>
 			<button
 				className={styles.buttonsCount}
 				disabled={count >= stock}
