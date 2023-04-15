@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ItemCart from "../ItemCart/ItemCart";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import styles from "./cart.module.css";
+import Swal from "sweetalert2";
 
 const Cart = () => {
 	const { cart, totalPrice } = useCartContext();
@@ -44,24 +45,37 @@ const Cart = () => {
 	};
 
 	const handleClick = () => {
-		const confirmed = window.confirm(
-			"Would you like to confirm your purchase?"
-		);
-		if (confirmed) {
-			const db = getFirestore();
-			const ordersCollection = collection(db, "orders");
-			addDoc(ordersCollection, order)
-				.then(({ id }) => {
-					alert(`Your order has been processed! Order number: ${id}`);
-					window.location.href = "/";
-				})
-				.catch((error) => {
-					console.error("Error adding document: ", error);
-					alert(
-						"An error occurred while processing the order. Please try again."
-					);
-				});
-		}
+		Swal.fire({
+			title: "Order confirmation",
+			text: "Would you like to confirm your purchase?",
+			icon: "question",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Buy it!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				const db = getFirestore();
+				const ordersCollection = collection(db, "orders");
+				addDoc(ordersCollection, order)
+					.then(({ id }) => {
+						Swal.fire({
+							title: "Successful!",
+							text: `Your order has been processed! Order number: ${id}`,
+							icon: "success",
+							confirmButtonText: "Ok",
+						}).then(() => {
+							window.location.href = "/";
+						});
+					})
+					.catch((error) => {
+						console.error("Error adding document: ", error);
+						alert(
+							"An error occurred while processing the order. Please try again."
+						);
+					});
+			}
+		});
 	};
 
 	if (cart.length === 0) {
@@ -80,7 +94,7 @@ const Cart = () => {
 			{cart.map((item) => (
 				<ItemCart key={item.id} item={item} />
 			))}
-			<p className={styles.totalPrice}>Total: ${totalPrice()}</p>
+			<p className={styles.totalPrice}>Total: ${totalPrice().toFixed(2)}</p>
 
 			<form className={styles.form}>
 				<div>
