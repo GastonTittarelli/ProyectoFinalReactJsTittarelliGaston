@@ -1,8 +1,9 @@
 # Proyecto ecommerce
 Este es un proyecto de ecommerce que permite a los usuarios comprar productos en línea.
 
+&nbsp;
 
-
+&nbsp;
 
 ## Funcionalidades
 -Carga de datos en base de datos (Firebase).
